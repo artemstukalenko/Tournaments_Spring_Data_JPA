@@ -22,7 +22,7 @@ public class UserRoleDAOImpl implements UserRoleDAO {
     @Override
     @Transactional
     public List<UserRole> getAllUserRoles() {
-        List<UserRole> allRoles = new ArrayList<>();
+        List<UserRole> allRoles;
 
         Session session = sessionFactory.getCurrentSession();
         allRoles = session.createQuery("from UserRole", UserRole.class).getResultList();

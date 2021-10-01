@@ -1,5 +1,7 @@
 package com.artemstukalenko.tournaments.task.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
 public class User extends AppEntity {

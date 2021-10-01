@@ -1,9 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
 
 <body>
 
 <h1>PRIVET!</h1>
+
+<hr/>
+<br/>
+<br/>
+
+<table border="1">
+    <thead>
+    <th>ID</th>
+    <th>NAME</th>
+    </thead>
+    <tbody>
+    <tr th:each="role: ${allRoles}">
+        <td th:text="${role.roleId}"/>
+        <td th:text="${role.roleName}"/>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 
