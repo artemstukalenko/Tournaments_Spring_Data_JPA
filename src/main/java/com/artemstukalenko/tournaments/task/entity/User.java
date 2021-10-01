@@ -1,16 +1,26 @@
 package com.artemstukalenko.tournaments.task.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User extends AppEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int userId;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private UserRole userRole;
+    @Column(name = "name")
     private String name;
+    @Column(name = "user_name")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "is_admin")
     private boolean isAdmin;
 
     public User() {}

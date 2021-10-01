@@ -21,17 +21,17 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public UserRole findRoleById(int roleId) {
-        return null;
+        return userRoleDAO.findRoleById(roleId);
     }
 
     @Override
     public boolean addNewRole(UserRole roleToAdd) {
-        return false;
+        return userRoleDAO.addOrUpdateRole(roleToAdd);
     }
 
     @Override
     public boolean deleteRoleById(int roleId) {
-        return false;
+        return userRoleDAO.deleteRoleById(roleId);
     }
 
     @Override

@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface UserDAO {
 
-    List<User> getAllUsers() throws SQLException;
+    List<User> getAllUsers();
 
-    boolean addNewUser(User userToAdd) throws SQLException;
+    boolean addNewUser(User userToAdd);
 
-    boolean deleteUserById(int userId) throws SQLException;
+    boolean deleteUserById(int userId);
 
-    User findUserById(int userId) throws SQLException;
+    User findUserById(int userId);
 
-    boolean updateUser(int userToUpdateId, User updatedUserObject) throws SQLException;
+    boolean updateUser(int userToUpdateId, User updatedUserObject);
 
-    List<User> findUsersByUserRoleId(int userRoleId) throws SQLException;
+    List<User> findUsersByUserRoleId(int userRoleId);
 }
