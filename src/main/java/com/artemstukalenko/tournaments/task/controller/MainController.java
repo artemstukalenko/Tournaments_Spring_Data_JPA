@@ -1,5 +1,7 @@
 package com.artemstukalenko.tournaments.task.controller;
 
+import com.artemstukalenko.tournaments.task.dao.UserRoleDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

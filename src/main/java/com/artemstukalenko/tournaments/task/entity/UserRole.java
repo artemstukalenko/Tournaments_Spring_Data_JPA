@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "usersroles")
 public class UserRole extends AppEntity {
 
     @Id
