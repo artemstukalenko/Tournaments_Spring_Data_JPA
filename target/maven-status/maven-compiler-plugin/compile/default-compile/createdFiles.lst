@@ -1,0 +1,8 @@
+com\artemstukalenko\tournaments\task\entity\Tournament.class
+com\artemstukalenko\tournaments\task\entity\Entity.class
+com\artemstukalenko\tournaments\task\entity\Player.class
+com\artemstukalenko\tournaments\task\entity\UserRole.class
+com\artemstukalenko\tournaments\task\entity\Schedule.class
+com\artemstukalenko\tournaments\task\entity\User.class
+com\artemstukalenko\tournaments\task\entity\Team.class
+com\artemstukalenko\tournaments\task\entity\TeamPlayer.class
