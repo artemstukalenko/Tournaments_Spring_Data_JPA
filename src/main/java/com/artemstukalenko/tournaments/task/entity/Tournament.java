@@ -3,7 +3,7 @@ package com.artemstukalenko.tournaments.task.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Tournament extends Entity {
+public class Tournament extends AppEntity {
 
     private int tournamentId;
     private User user;

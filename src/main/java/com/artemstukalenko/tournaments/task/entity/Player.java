@@ -1,8 +1,10 @@
 package com.artemstukalenko.tournaments.task.entity;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Objects;
 
-public class Player extends Entity {
+public class Player extends AppEntity {
 
     private int id;
     private String playerName;
