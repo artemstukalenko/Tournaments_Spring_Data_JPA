@@ -1,11 +1,19 @@
 package com.artemstukalenko.tournaments.task.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "teams")
 public class Team extends AppEntity {
 
+    @Id
+    @Column(name = "team_id")
     private int teamId;
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @Column(name = "team_name")
     private String teamName;
 
     public Team() {}

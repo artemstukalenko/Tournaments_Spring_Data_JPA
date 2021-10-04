@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface TeamDAO {
 
-    List<Team> getAllTeams() throws SQLException;
+    List<Team> getAllTeams();
 
-    Team findTeamById(int teamId) throws SQLException;
+    Team findTeamById(int teamId);
 
-    boolean addNewTeam(Team teamToAdd) throws SQLException;
+    boolean addOrUpdateTeam(Team teamToAdd);
 
-    boolean deleteTeamById(int teamId) throws SQLException;
+    boolean deleteTeamById(int teamId);
 
-    boolean updateTeamInDB(int teamToUpdate, Team updatedTeam) throws SQLException;
-
-    boolean deleteTeamByUserId(int userId) throws SQLException;
+    boolean deleteTeamByUserId(int userId);
 }
