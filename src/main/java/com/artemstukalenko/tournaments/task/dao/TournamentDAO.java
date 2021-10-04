@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface TournamentDAO {
 
-    List<Tournament> getAllTournaments() throws SQLException;
+    List<Tournament> getAllTournaments();
 
-    Tournament findTournamentById(int tournamentId) throws SQLException;
+    Tournament findTournamentById(int tournamentId);
 
-    boolean addNewTournament(Tournament tournamentToAdd) throws SQLException;
+    boolean addOrUpdateTournament(Tournament tournamentToAdd);
 
-    boolean deleteTournamentById(int tournamentId) throws SQLException;
+    boolean deleteTournamentById(int tournamentId);
 
-    boolean updateTournamentInDB(int tournamentToUpdate, Tournament updatedTournament) throws SQLException;
-
-    boolean deleteTournamentByUserId(int userId) throws SQLException;
+    boolean deleteTournamentByUserId(int userId);
 }

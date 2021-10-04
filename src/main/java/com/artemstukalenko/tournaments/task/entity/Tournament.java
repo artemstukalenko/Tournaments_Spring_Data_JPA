@@ -1,15 +1,26 @@
 package com.artemstukalenko.tournaments.task.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tournaments")
 public class Tournament extends AppEntity {
 
+    @Id
+    @Column(name = "tournament_id")
     private int tournamentId;
+    @OneToOne
+    @Column(name = "user_id")
     private User user;
+    @Column(name = "tournament_name")
     private String tournamentName;
+    @Column(name = "venue")
     private String venue;
+    @Column(name = "start_date")
     private LocalDate startDate;
+    @Column(name = "end_date")
     private LocalDate endDate;
 
     public Tournament(int tournamentId, User user, String tournamentName, String venue, LocalDate startDate, LocalDate endDate) {
@@ -28,6 +39,8 @@ public class Tournament extends AppEntity {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    public Tournament() {}
 
     @Override
     public boolean equals(Object o) {

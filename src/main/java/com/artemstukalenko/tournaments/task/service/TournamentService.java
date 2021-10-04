@@ -10,11 +10,9 @@ public interface TournamentService {
 
     Tournament findTournamentById(int tournamentId);
 
-    boolean addNewTournament(Tournament tournamentToAdd);
+    boolean addOrUpdateTournament(Tournament tournamentToAdd);
 
     boolean deleteTournamentById(int tournamentId);
-
-    boolean updateTournamentInDB(int tournamentToUpdate, Tournament updatedTournament);
 
     boolean deleteTournamentByUserId(int userId);
 }
