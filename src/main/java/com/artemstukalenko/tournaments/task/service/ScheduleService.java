@@ -10,10 +10,8 @@ public interface ScheduleService {
 
     Schedule findScheduleById(int scheduleId);
 
-    boolean addNewSchedule(Schedule scheduleToAdd);
+    boolean addOrUpdateSchedule(Schedule scheduleToAdd);
 
     boolean deleteScheduleById(int scheduleId);
-
-    boolean updateScheduleInDB(int scheduleToUpdate, Schedule updatedSchedule);
 
 }

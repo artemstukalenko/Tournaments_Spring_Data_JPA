@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface ScheduleDAO {
 
-    List<Schedule> getAllSchedules() throws SQLException;
+    List<Schedule> getAllSchedules();
 
-    Schedule findScheduleById(int scheduleId) throws SQLException;
+    Schedule findScheduleById(int scheduleId);
 
-    boolean addNewSchedule(Schedule scheduleToAdd) throws SQLException;
+    boolean addOrUpdateSchedule(Schedule scheduleToAdd);
 
-    boolean deleteScheduleById(int scheduleId) throws SQLException;
+    boolean deleteScheduleById(int scheduleId);
 
-    boolean updateScheduleInDB(int scheduleToUpdate, Schedule updatedSchedule) throws SQLException;
-
-    boolean deleteScheduleByExternalId(int teamId, String columnName) throws SQLException;
+    boolean deleteScheduleByExternalId(int teamId, String columnName);
 }

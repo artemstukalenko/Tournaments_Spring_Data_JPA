@@ -1,11 +1,20 @@
 package com.artemstukalenko.tournaments.task.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "schedules")
 public class Schedule extends AppEntity {
 
+    @Id
+    @Column(name = "schedule_id")
     private int scheduleId;
+    @ManyToOne
+    @JoinColumn(name = "tournament_id")
     private Tournament tournament;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
     private Team team;
 
     public Schedule(Tournament tournament, Team team) {
@@ -18,6 +27,8 @@ public class Schedule extends AppEntity {
         this.tournament = tournament;
         this.team = team;
     }
+
+    public Schedule() {}
 
     @Override
     public boolean equals(Object o) {
