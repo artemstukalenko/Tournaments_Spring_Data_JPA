@@ -10,10 +10,8 @@ public interface TeamPlayerService {
 
     TeamPlayer findTeamPlayerById(int teamPlayerId);
 
-    boolean addNewTeamPlayer(TeamPlayer teamPlayerToAdd);
+    boolean addOrUpdateTeamPlayer(TeamPlayer teamPlayerToAdd);
 
     boolean deleteTeamPlayerById(int teamPlayerId);
-
-    boolean updateTeamPlayerInDB(int teamPlayerToUpdate, TeamPlayer updatedTeamPlayer);
 
 }
