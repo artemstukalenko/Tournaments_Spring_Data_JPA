@@ -8,13 +8,11 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    boolean addNewUser(User userToAdd);
+    boolean addOrUpdateUser(User userToAdd);
 
     boolean deleteUserById(int userId);
 
     User findUserById(int userId);
-
-    boolean updateUser(int userToUpdateId, User updatedUserObject);
 
     List<User> findUsersByUserRoleId(int userRoleId);
 }

@@ -20,27 +20,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addNewUser(User userToAdd) {
-        return false;
+    public boolean addOrUpdateUser(User userToAdd) {
+        return userDAO.addOrUpdateUser(userToAdd);
     }
 
     @Override
     public boolean deleteUserById(int userId) {
-        return false;
+        return userDAO.deleteUserById(userId);
     }
 
     @Override
     public User findUserById(int userId) {
-        return null;
-    }
-
-    @Override
-    public boolean updateUser(int userToUpdateId, User updatedUserObject) {
-        return false;
+        return userDAO.findUserById(userId);
     }
 
     @Override
     public List<User> findUsersByUserRoleId(int userRoleId) {
-        return null;
+        return userDAO.findUsersByUserRoleId(userRoleId);
     }
 }

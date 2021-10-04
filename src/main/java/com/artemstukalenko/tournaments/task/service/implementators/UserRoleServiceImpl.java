@@ -25,7 +25,7 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public boolean addNewRole(UserRole roleToAdd) {
+    public boolean addOrUpdateRole(UserRole roleToAdd) {
         return userRoleDAO.addOrUpdateRole(roleToAdd);
     }
 
@@ -34,8 +34,4 @@ public class UserRoleServiceImpl implements UserRoleService {
         return userRoleDAO.deleteRoleById(roleId);
     }
 
-    @Override
-    public boolean updateRole(int roleToUpdate, UserRole updatedRole) {
-        return false;
-    }
 }

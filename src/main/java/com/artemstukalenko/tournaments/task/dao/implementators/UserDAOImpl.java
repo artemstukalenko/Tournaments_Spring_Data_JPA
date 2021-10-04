@@ -3,12 +3,10 @@ package com.artemstukalenko.tournaments.task.dao.implementators;
 import com.artemstukalenko.tournaments.task.dao.EntityDAO;
 import com.artemstukalenko.tournaments.task.dao.UserDAO;
 import com.artemstukalenko.tournaments.task.entity.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -26,27 +24,50 @@ public class UserDAOImpl extends EntityDAO implements UserDAO {
     }
 
     @Override
-    public boolean addNewUser(User userToAdd) {
-        return false;
+    @Transactional
+    public boolean addOrUpdateUser(User userToAdd) {
+
+        initializeSession();
+        session.saveOrUpdate(userToAdd);
+
+        return true;
     }
 
     @Override
+    @Transactional
     public boolean deleteUserById(int userId) {
-        return false;
+
+        initializeSession();
+        Query<User> queryForDeletingUserById = session.createQuery("delete from User " +
+                "where userId = :idToDelete");
+        queryForDeletingUserById.setParameter("idToDelete", userId);
+        queryForDeletingUserById.executeUpdate();
+
+        return true;
     }
 
     @Override
+    @Transactional
     public User findUserById(int userId) {
-        return null;
+        User soughtUser;
+
+        initializeSession();
+        soughtUser = session.get(User.class, userId);
+
+        return soughtUser;
     }
 
     @Override
-    public boolean updateUser(int userToUpdateId, User updatedUserObject) {
-        return false;
-    }
-
-    @Override
+    @Transactional
     public List<User> findUsersByUserRoleId(int userRoleId) {
-        return null;
+        List<User> soughtUsers;
+
+        initializeSession();
+        String selectionQuery = "select * from users where role_id = :id";
+        Query<User> queryForFindingUserById = session.createNativeQuery(selectionQuery)
+                .setParameter("id", userRoleId);
+
+        soughtUsers = queryForFindingUserById.getResultList();
+        return soughtUsers;
     }
 }

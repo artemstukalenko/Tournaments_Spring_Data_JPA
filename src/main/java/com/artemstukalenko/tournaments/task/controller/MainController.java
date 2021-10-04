@@ -22,7 +22,7 @@ public class MainController {
     @RequestMapping("/")
     public String getHomepage(Model model) {
 
-        System.out.println("ROLE " + userRoleService.findRoleById(1));
+        System.out.println("ROLE ");
 
         return "homepage";
     }
