@@ -4,10 +4,17 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
+@Table(name = "players")
 public class Player extends AppEntity {
 
+    @Id
+    @Column(name = "player_id")
     private int id;
+    @Column(name = "player_name")
     private String playerName;
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Player() {}

@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface PlayerDAO {
 
-    List<Player> getAllPlayers() throws SQLException;
+    List<Player> getAllPlayers();
 
-    Player findPlayerById(int playerId) throws SQLException;
+    Player findPlayerById(int playerId);
 
-    boolean addNewPlayer(Player playerToAdd) throws SQLException;
+    boolean addOrUpdatePlayer(Player playerToAdd);
 
-    boolean deletePlayerById(int playerId) throws SQLException;
+    boolean deletePlayerById(int playerId);
 
-    boolean updatePlayerInDB(int playerToUpdate, Player updatedPlayer) throws SQLException;
-
-    boolean deletePlayerByUserId(int userId) throws SQLException;
+    boolean deletePlayerByUserId(int userId);
 }
