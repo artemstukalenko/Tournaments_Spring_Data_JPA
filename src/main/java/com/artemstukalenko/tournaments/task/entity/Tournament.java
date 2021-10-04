@@ -12,7 +12,7 @@ public class Tournament extends AppEntity {
     @Column(name = "tournament_id")
     private int tournamentId;
     @OneToOne
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "tournament_name")
     private String tournamentName;

@@ -17,16 +17,10 @@ public class MainController {
     @Autowired
     private UserRoleService userRoleService;
 
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private PlayerService playerService;
-
     @RequestMapping("/")
     public String getHomepage(Model model) {
 
-        System.out.println(playerService.getAllPlayers());
+        model.addAttribute("allRoles", userRoleService.getAllUserRoles());
 
         return "homepage";
     }

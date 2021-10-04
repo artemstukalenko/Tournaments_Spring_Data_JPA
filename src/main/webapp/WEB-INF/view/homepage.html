@@ -14,17 +14,15 @@
 <br/>
 <br/>
 
-<table border="1">
-    <thead>
-    <th>ID</th>
-    <th>NAME</th>
-    </thead>
-    <tbody>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+    </tr>
     <tr th:each="role: ${allRoles}">
         <td th:text="${role.roleId}"/>
         <td th:text="${role.roleName}"/>
     </tr>
-    </tbody>
 </table>
 
 </body>
