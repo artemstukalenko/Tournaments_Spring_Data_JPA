@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User roles</title>
+</head>
+
+<body>
+
+<h3>Add new role</h3>
+<hr/>
+
+<form th:action="@{/roles/commitNewRole/}" th:object="${userRole}" method="post">
+    Role name: <input type="text" name="roleName" th:field="*{roleName}"/> <br/><br/>
+    <button type="submit" name="submit" value="submit">Submit</button>
+</form>
+
+</body>
+
+</html>
