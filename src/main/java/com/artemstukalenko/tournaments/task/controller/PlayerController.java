@@ -1,23 +1,24 @@
 package com.artemstukalenko.tournaments.task.controller;
 
-import com.artemstukalenko.tournaments.task.service.UserRoleService;
+import com.artemstukalenko.tournaments.task.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/roles")
-public class RoleController {
+@RequestMapping("/players")
+public class PlayerController {
 
     @Autowired
-    private UserRoleService userRoleService;
+    private PlayerService playerService;
 
     @RequestMapping("/")
-    public String showRoles(Model model) {
-        model.addAttribute("allRoles", userRoleService.getAllUserRoles());
+    public String getAllPlayers(Model model) {
 
-        return "roles-page.html";
+        model.addAttribute("allPlayers", playerService.getAllPlayers());
+
+        return "";
     }
 
 }
