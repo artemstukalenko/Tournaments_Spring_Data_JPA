@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teamplayers</title>
+</head>
+
+<body>
+
+<h3>Teamplayers</h3>
+<br/>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>TEAM ID</th>
+        <th>TEAM NAME</th>
+        <th>TEAM USER ID</th>
+        <th>TEAM USER ROLE ID</th>
+        <th>TEAM USER ROLE NAME</th>
+        <th>TEAM USER NAME</th>
+        <th>TEAM USER USERNAME</th>
+        <th>TEAM USER PASSWORD</th>
+        <th>TEAM USER IS ADMIN</th>
+        <th>PLAYER ID</th>
+        <th>PLAYER NAME</th>
+        <th>PLAYER USER ID</th>
+        <th>PLAYER USER ROLE ID</th>
+        <th>PLAYER USER ROLE NAME</th>
+        <th>PLAYER USER NAME</th>
+        <th>PLAYER USER USERNAME</th>
+        <th>PLAYER USER PASSWORD</th>
+        <th>PLAYER USER IS ADMIN</th>
+    </tr>
+    <tr th:each="teamplayer: ${allTeamplayers}">
+
+        <td th:text="${teamplayer.teamPlayerId}"></td>
+        <td th:text="${teamplayer.team.teamId}"></td>
+        <td th:text="${teamplayer.team.teamName}"></td>
+        <td th:text="${teamplayer.team.user.userId}"></td>
+        <td th:text="${teamplayer.team.user.userRole.roleId}"></td>
+        <td th:text="${teamplayer.team.user.userRole.roleName}"></td>
+        <td th:text="${teamplayer.team.user.name}"></td>
+        <td th:text="${teamplayer.team.user.username}"></td>
+        <td th:text="${teamplayer.team.user.password}"></td>
+        <td th:text="${teamplayer.team.user.isAdmin}"></td>
+
+
+        <td th:text="${teamplayer.player.id}"></td>
+        <td th:text="${teamplayer.player.playerName}"></td>
+        <td th:text="${teamplayer.player.user.userId}"></td>
+        <td th:text="${teamplayer.player.user.userRole.roleId}"></td>
+        <td th:text="${teamplayer.player.user.userRole.roleName}"></td>
+        <td th:text="${teamplayer.player.user.name}"></td>
+        <td th:text="${teamplayer.player.user.username}"></td>
+        <td th:text="${teamplayer.player.user.password}"></td>
+        <td th:text="${teamplayer.player.user.isAdmin}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/teamplayers")
-public class TeamPlayers {
+public class TeamPlayersController {
 
     @Autowired
     private TeamPlayerService teamPlayerService;
@@ -18,7 +18,7 @@ public class TeamPlayers {
 
         model.addAttribute("allTeamplayers", teamPlayerService.getAllTeamPlayers());
 
-        return "";
+        return "teamplayers-page.html";
     }
 
 }
