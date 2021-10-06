@@ -16,9 +16,10 @@ public class PlayerController {
     @RequestMapping("/")
     public String getAllPlayers(Model model) {
 
+        System.out.println("PLAYERS:    " + playerService.getAllPlayers());
         model.addAttribute("allPlayers", playerService.getAllPlayers());
 
-        return "";
+        return "players-page.html";
     }
 
 }

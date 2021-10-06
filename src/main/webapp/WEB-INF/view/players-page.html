@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Players</title>
+</head>
+
+<body>
+
+<h3>Players</h3>
+<br/>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Player Name</th>
+        <th>USER ID</th>
+        <th>USER ROLE ID</th>
+        <th>USER ROLE NAME</th>
+        <th>USER NAME</th>
+        <th>USER USERNAME</th>
+        <th>USER PASSWORD</th>
+        <th>USER IS ADMIN</th>
+    </tr>
+    <tr th:each="player: ${allPlayers}">
+        <td th:text="${player.id}"></td>
+        <td th:text="${player.playerName}"></td>
+        <td th:text="${player.user.userId}"></td>
+        <td th:text="${player.user.userRole.roleId}"></td>
+        <td th:text="${player.user.userRole.roleName}"></td>
+        <td th:text="${player.user.name}"></td>
+        <td th:text="${player.user.username}"></td>
+        <td th:text="${player.user.password}"></td>
+        <td th:text="${player.user.isAdmin}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>
