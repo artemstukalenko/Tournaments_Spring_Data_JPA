@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+
+<body>
+
+<h3>Users</h3>
+<br/>
+<table border="1">
+    <tr>
+        <th>ID</th>
+
+        <th>TOURNAMENT ID</th>
+        <th>TOURNAMENT Name</th>
+        <th>USER ID</th>
+        <th>USER ROLE ID</th>
+        <th>USER ROLE NAME</th>
+        <th>USER NAME</th>
+        <th>USER USERNAME</th>
+        <th>USER PASSWORD</th>
+        <th>USER IS ADMIN</th>
+        <th>VENUE</th>
+        <th>START DATE</th>
+        <th>END DATE</th>
+
+        <th>TEAM ID</th>
+        <th>Team Name</th>
+        <th>USER ID</th>
+        <th>USER ROLE ID</th>
+        <th>USER ROLE NAME</th>
+        <th>USER NAME</th>
+        <th>USER USERNAME</th>
+        <th>USER PASSWORD</th>
+        <th>USER IS ADMIN</th>
+    </tr>
+    <tr th:each="schedule: ${allSchedules}">
+        <td th:text="${schedule.scheduleId}"></td>
+
+            <td th:text="${schedule.tournament.tournamentId}"></td>
+
+                <td th:text="${schedule.tournament.user.userId}"></td>
+                <td th:text="${schedule.tournament.user.userRole.roleId}"></td>
+                <td th:text="${schedule.tournament.user.userRole.roleName}"></td>
+                <td th:text="${schedule.tournament.user.name}"></td>
+                <td th:text="${schedule.tournament.user.username}"></td>
+                <td th:text="${schedule.tournament.user.password}"></td>
+                <td th:text="${schedule.tournament.user.isAdmin}"></td>
+
+            <td th:text="${schedule.tournament.tournamentName}"></td>
+            <td th:text="${schedule.tournament.venue}"></td>
+            <td th:text="${schedule.tournament.startDate}"></td>
+            <td th:text="${schedule.tournament.endDate}"></td>
+
+            <td th:text="${schedule.team.teamId}"></td>
+            <td th:text="${schedule.team.teamName}"></td>
+                <td th:text="${schedule.team.user.userId}"></td>
+                <td th:text="${schedule.team.user.userRole.roleId}"></td>
+                <td th:text="${schedule.team.user.userRole.roleName}"></td>
+                <td th:text="${schedule.team.user.name}"></td>
+                <td th:text="${schedule.team.user.username}"></td>
+                <td th:text="${schedule.team.user.password}"></td>
+                <td th:text="${schedule.team.user.isAdmin}"></td>
+    </tr>
+    </tr>
+</table>
+
+</body>
+
+</html>

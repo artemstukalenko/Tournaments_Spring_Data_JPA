@@ -13,11 +13,12 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
+    @RequestMapping("/")
     public String getAllSchedules(Model model) {
 
         model.addAttribute("allSchedules", scheduleService.getAllSchedules());
 
-        return "";
+        return "schedules-page.html";
     }
 
 }
