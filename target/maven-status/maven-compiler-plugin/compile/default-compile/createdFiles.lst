@@ -1,4 +1,5 @@
 com\artemstukalenko\tournaments\task\dao\implementators\ScheduleDAOImpl.class
+com\artemstukalenko\tournaments\task\config\WebApp.class
 com\artemstukalenko\tournaments\task\dao\implementators\UserDAOImpl.class
 com\artemstukalenko\tournaments\task\entity\Player.class
 com\artemstukalenko\tournaments\task\dao\implementators\TournamentDAOImpl.class
@@ -28,6 +29,7 @@ com\artemstukalenko\tournaments\task\dao\TeamPlayerDAO.class
 com\artemstukalenko\tournaments\task\entity\Team.class
 com\artemstukalenko\tournaments\task\entity\TeamPlayer.class
 com\artemstukalenko\tournaments\task\service\implementators\TournamentServiceImpl.class
+com\artemstukalenko\tournaments\task\config\WebMVCConfig$1.class
 com\artemstukalenko\tournaments\task\dao\ScheduleDAO.class
 com\artemstukalenko\tournaments\task\service\UserService.class
 com\artemstukalenko\tournaments\task\dao\implementators\TeamDAOImpl.class

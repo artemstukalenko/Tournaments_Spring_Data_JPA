@@ -22,7 +22,7 @@ public class MainController {
 
         model.addAttribute("allRoles", userRoleService.getAllUserRoles());
 
-        return "homepage";
+        return "homepage.html";
     }
 
 }
