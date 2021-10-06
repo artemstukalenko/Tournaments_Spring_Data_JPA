@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teams</title>
+</head>
+
+<body>
+
+<h3>Teams</h3>
+<br/>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Team Name</th>
+        <th>USER ID</th>
+        <th>USER ROLE ID</th>
+        <th>USER ROLE NAME</th>
+        <th>USER NAME</th>
+        <th>USER USERNAME</th>
+        <th>USER PASSWORD</th>
+        <th>USER IS ADMIN</th>
+    </tr>
+    <tr th:each="team: ${allTeams}">
+        <td th:text="${team.teamId}"></td>
+        <td th:text="${team.teamName}"></td>
+        <td th:text="${team.user.userId}"></td>
+        <td th:text="${team.user.userRole.roleId}"></td>
+        <td th:text="${team.user.userRole.roleName}"></td>
+        <td th:text="${team.user.name}"></td>
+        <td th:text="${team.user.username}"></td>
+        <td th:text="${team.user.password}"></td>
+        <td th:text="${team.user.isAdmin}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>

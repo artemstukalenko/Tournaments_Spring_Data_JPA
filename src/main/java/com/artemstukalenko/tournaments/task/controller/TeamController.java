@@ -18,7 +18,7 @@ public class TeamController {
 
         model.addAttribute("allTeams", teamService.getAllTeams());
 
-        return "";
+        return "teams-page.html";
     }
 
 }
