@@ -18,7 +18,7 @@ public class TournamentController {
 
         model.addAttribute("allTournaments", tournamentService.getAllTournaments());
 
-        return "";
+        return "tournaments-page.html";
     }
 
 }
