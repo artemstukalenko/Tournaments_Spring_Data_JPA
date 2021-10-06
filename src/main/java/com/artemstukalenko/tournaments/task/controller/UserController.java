@@ -18,7 +18,7 @@ public class UserController {
 
         model.addAttribute("allUsers", userService.getAllUsers());
 
-        return "";
+        return "users-page.html";
     }
 
 }

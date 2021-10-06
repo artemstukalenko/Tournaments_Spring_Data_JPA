@@ -8,12 +8,6 @@
 
 <body>
 
-<h1>PRIVET!</h1>
-
-<hr/>
-<br/>
-<br/>
-
 <h3>Roles</h3>
 <br/>
 <table border="1">
@@ -22,8 +16,8 @@
         <th>NAME</th>
     </tr>
     <tr th:each="role: ${allRoles}">
-        <td th:text="${role.roleId}"/>
-        <td th:text="${role.roleName}"/>
+        <td th:text="${role.roleId}"></td>
+        <td th:text="${role.roleName}"></td>
     </tr>
 </table>
 

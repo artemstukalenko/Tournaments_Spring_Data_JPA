@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+
+<body>
+
+<h3>Users</h3>
+<br/>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>ROLE ID</th>
+        <th>ROLE NAME</th>
+        <th>NAME</th>
+        <th>USERNAME</th>
+        <th>PASSWORD</th>
+        <th>IS ADMIN</th>
+    </tr>
+    <tr th:each="user: ${allUsers}">
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.userRole.roleId}"></td>
+        <td th:text="${user.userRole.roleName}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.isAdmin}"></td>
+    </tr>
+</table>
+
+</body>
+
+</html>
