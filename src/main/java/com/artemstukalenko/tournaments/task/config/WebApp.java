@@ -2,7 +2,7 @@ package com.artemstukalenko.tournaments.task.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public  class WebApp extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebApp extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     public WebApp() {
         super();

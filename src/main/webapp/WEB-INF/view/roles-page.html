@@ -14,10 +14,17 @@
     <tr>
         <th>ID</th>
         <th>NAME</th>
+        <th></th>
     </tr>
     <tr th:each="role: ${allRoles}">
         <td th:text="${role.roleId}"></td>
         <td th:text="${role.roleName}"></td>
+
+        <td>
+        <form th:action="@{/roles/deleteRole/{id}(id=${role.roleId})}">
+            <input type="submit" value="Delete">
+        </form>
+        </td>
     </tr>
 </table>
 

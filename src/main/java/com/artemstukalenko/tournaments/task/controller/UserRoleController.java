@@ -5,9 +5,7 @@ import com.artemstukalenko.tournaments.task.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/roles")
@@ -35,6 +33,14 @@ public class UserRoleController {
     public String addNewRole(UserRole userRole) {
 
         userRoleService.addOrUpdateRole(userRole);
+
+        return "forward:/roles/";
+    }
+
+    @RequestMapping("/deleteRole/{id}")
+    public String deleteRole(@PathVariable("id") int idToDelete) {
+
+        userRoleService.deleteRoleById(idToDelete);
 
         return "forward:/roles/";
     }
