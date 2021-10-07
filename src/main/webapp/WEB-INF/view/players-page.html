@@ -32,6 +32,17 @@
         <td th:text="${player.user.username}"></td>
         <td th:text="${player.user.password}"></td>
         <td th:text="${player.user.isAdmin}"></td>
+
+        <td>
+            <form th:action="@{/players/deletePlayer/{id}(id=${player.id})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/players/updatePlayer/{id}(id=${player.id})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+        </td>
     </tr>
 </table>
 

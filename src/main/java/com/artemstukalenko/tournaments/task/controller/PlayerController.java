@@ -49,18 +49,18 @@ public class PlayerController {
     @RequestMapping("/deletePlayer/{id}")
     public String deletePlayer(@PathVariable("id") int idToDelete) {
 
-        playerService.deletePlayerByUserId(idToDelete);
+        playerService.deletePlayerById(idToDelete);
 
         return "forward:/players/";
     }
 
     @RequestMapping("/updatePlayer/{id}")
-    public String getFormToUpdatePlayer(@PathVariable int idToUpdate,
+    public String getFormToUpdatePlayer(@PathVariable("id") int idToUpdate,
                                         Model model) {
 
         model.addAttribute("player", playerService.findPlayerById(idToUpdate));
         model.addAttribute("allUsers", userService.getAllUsers());
 
-        return "player_form.html";
+        return "player-form.html";
     }
 }
