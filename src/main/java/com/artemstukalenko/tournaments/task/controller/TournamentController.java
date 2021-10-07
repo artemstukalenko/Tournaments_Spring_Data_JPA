@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/tournaments")
@@ -37,7 +40,12 @@ public class TournamentController {
     }
 
     @RequestMapping("/commitTournament")
-    public String commitTournament(Tournament tournament) {
+    public String commitTournament(Tournament tournament,
+                                   @RequestParam("start_date") String startDateString,
+                                   @RequestParam("end_date") String endDateString) {
+
+        tournament.setStartDate(LocalDate.parse(startDateString));
+        tournament.setEndDate(LocalDate.parse(endDateString));
 
         tournament.setUser(userService.findUserById(tournament.getUser().getUserId()));
 

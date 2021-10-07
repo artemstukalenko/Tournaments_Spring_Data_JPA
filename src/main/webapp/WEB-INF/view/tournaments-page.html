@@ -40,8 +40,31 @@
         <td th:text="${tournament.venue}"></td>
         <td th:text="${tournament.startDate}"></td>
         <td th:text="${tournament.endDate}"></td>
+
+        <td>
+            <form th:action="@{/tournaments/deleteTournament/{id}(id=${tournament.tournamentId})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/tournaments/updateTournament/{id}(id=${tournament.tournamentId})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+        </td>
     </tr>
 </table>
+
+<br/>
+<hr/>
+<br/>
+
+<form th:action="@{/tournaments/addTournament}" method="get">
+    <input type="submit" value="Add new tournament"/> <br/><br/>
+</form>
+
+<form th:action="@{/}" method="get">
+    <input type="submit" value="To homepage"> <br/><br/>
+</form>
 
 </body>
 
