@@ -1,5 +1,6 @@
 package com.artemstukalenko.tournaments.task.controller;
 
+import com.artemstukalenko.tournaments.task.entity.User;
 import com.artemstukalenko.tournaments.task.entity.UserRole;
 import com.artemstukalenko.tournaments.task.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class UserRoleController {
         return "add-new-role-form.html";
     }
 
-    @PostMapping("/commitNewRole")
-    public String addNewRole(UserRole userRole) {
+    @PostMapping("/commitRole")
+    public String commitRole(UserRole userRole) {
 
         userRoleService.addOrUpdateRole(userRole);
 
@@ -43,6 +44,14 @@ public class UserRoleController {
         userRoleService.deleteRoleById(idToDelete);
 
         return "forward:/roles/";
+    }
+
+    @RequestMapping("/updateRole/{id}")
+    public String getUpdateRoleForm(@PathVariable("id") int idToUpdate, Model model) {
+
+        model.addAttribute("userRole", userRoleService.findRoleById(idToUpdate));
+
+        return "add-new-role-form.html";
     }
 
 }

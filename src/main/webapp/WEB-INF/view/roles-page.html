@@ -25,6 +25,11 @@
             <input type="submit" value="Delete">
         </form>
         </td>
+        <td>
+            <form th:action="@{/roles/updateRole/{id}(id=${role.roleId})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+        </td>
     </tr>
 </table>
 

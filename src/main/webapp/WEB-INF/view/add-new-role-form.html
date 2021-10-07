@@ -11,8 +11,9 @@
 <h3>Add new role</h3>
 <hr/>
 
-<form th:action="@{/roles/commitNewRole/}" th:object="${userRole}" method="post">
+<form th:action="@{/roles/commitRole/}" th:object="${userRole}" method="post">
     Role name: <input type="text" name="roleName" th:field="*{roleName}"/> <br/><br/>
+    <input type="text" th:value="${userRole.roleId}" th:hidden="true" th:field="*{roleId}"/>
     <button type="submit" name="submit" value="submit">Submit</button>
 </form>
 
