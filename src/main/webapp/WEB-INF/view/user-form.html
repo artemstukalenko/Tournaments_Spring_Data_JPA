@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+
+<body>
+
+<h3>User form</h3>
+<hr/>
+
+<form th:action="@{/users/commitUser/}" th:object="${user}" method="post">
+    Name: <input type="text" name="userName" th:field="*{name}"/> <br/><br/>
+    Username: <input type="text" name="username" th:field="*{username}"/> <br/><br/>
+    Password: <input type="text" name="password" th:field="*{password}"/> <br/><br/>
+    Role:
+    <select th:field="*{userRole.roleId}" th:required="true">
+        <option th:each="role : ${availableRoles}" th:value="${role.roleId}" th:text="${role.roleName}">
+
+        </option>
+    </select>
+    <br/><br/>
+
+    <input type="text" th:value="${user.userId}" th:hidden="true" th:field="*{userId}"/>
+    <button type="submit" name="submit" value="submit">Submit</button>
+</form>
+
+<hr/>
+
+<form th:action="@{/roles/}" method="get">
+    <input type="submit" value="Cancel"> <br/><br/>
+</form>
+
+</body>
+
+</html>

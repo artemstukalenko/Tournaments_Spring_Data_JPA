@@ -1,6 +1,5 @@
 package com.artemstukalenko.tournaments.task.controller;
 
-import com.artemstukalenko.tournaments.task.entity.User;
 import com.artemstukalenko.tournaments.task.entity.UserRole;
 import com.artemstukalenko.tournaments.task.service.UserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
