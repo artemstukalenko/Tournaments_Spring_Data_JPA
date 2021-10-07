@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+
+<body>
+
+<h3>User form</h3>
+<hr/>
+
+<form th:action="@{/players/commitPlayer/}" th:object="${player}" method="post">
+    Name: <input type="text" name="playerName" th:field="*{playerName}"/> <br/><br/>
+    Select user for this player:
+    <select th:field="*{user.userId}" th:required="true">
+        <option th:each="user : ${allUsers}" th:value="${user.userId}" th:text="${user.username}">
+
+        </option>
+    </select>
+    <br/><br/>
+
+    <input type="text" th:value="${player.id}" th:hidden="true" th:field="*{id}"/>
+    <button type="submit" name="submit" value="submit">Submit</button>
+</form>
+
+<hr/>
+
+<form th:action="@{/players/}" method="get">
+    <input type="submit" value="Cancel"> <br/><br/>
+</form>
+
+</body>
+
+</html>
