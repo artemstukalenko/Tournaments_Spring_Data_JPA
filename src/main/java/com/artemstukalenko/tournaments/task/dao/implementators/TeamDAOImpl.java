@@ -70,4 +70,17 @@ public class TeamDAOImpl extends EntityDAO implements TeamDAO {
 
         return true;
     }
+
+    @Override
+    @Transactional
+    public List<Team> findTeamsByUserId(int userId) {
+
+        initializeSession();
+        String searchingQuery = "from Team where user.id = :id";
+        Query<Team> queryForFindingTeamByUserId = session
+                .createQuery(searchingQuery)
+                .setParameter("id", userId);
+
+        return queryForFindingTeamByUserId.getResultList();
+    }
 }

@@ -10,10 +10,10 @@ public class Schedule extends AppEntity {
     @Id
     @Column(name = "schedule_id")
     private int scheduleId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tournament_id")
     private Tournament tournament;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id")
     private Team team;
 

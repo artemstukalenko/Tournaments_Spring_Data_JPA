@@ -13,7 +13,7 @@ public class Player extends AppEntity {
     private int id;
     @Column(name = "player_name")
     private String playerName;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

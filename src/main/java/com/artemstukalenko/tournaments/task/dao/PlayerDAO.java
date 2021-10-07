@@ -16,4 +16,6 @@ public interface PlayerDAO {
     boolean deletePlayerById(int playerId);
 
     boolean deletePlayerByUserId(int userId);
+
+    List<Player> findPlayersByUserId(int userId);
 }

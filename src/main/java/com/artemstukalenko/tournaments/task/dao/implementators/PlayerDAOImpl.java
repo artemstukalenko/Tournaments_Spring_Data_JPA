@@ -66,7 +66,19 @@ public class PlayerDAOImpl extends EntityDAO implements PlayerDAO {
         String deletingQuery = "delete from players where user_id = :id";
         Query<Player> queryForDeletingPlayerByUserId = session
                 .createNativeQuery(deletingQuery).setParameter("id", userId);
+        queryForDeletingPlayerByUserId.executeUpdate();
 
         return true;
+    }
+
+    @Override
+    public List<Player> findPlayersByUserId(int userId) {
+
+        initializeSession();
+        String searchingQuery = "from Player where user.id = :id";
+        Query<Player> queryForFindingPlayerByUserId = session
+                .createQuery(searchingQuery).setParameter("id", userId);
+
+        return queryForFindingPlayerByUserId.getResultList();
     }
 }

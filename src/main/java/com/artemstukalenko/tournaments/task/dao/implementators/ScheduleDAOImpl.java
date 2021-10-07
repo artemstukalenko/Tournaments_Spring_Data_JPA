@@ -62,11 +62,10 @@ public class ScheduleDAOImpl extends EntityDAO implements ScheduleDAO {
     @Transactional
     public boolean deleteScheduleByExternalId(int externalId, String columnName) {
 
-        String deletingQuery = "delete from schedules where :column = :id";
+        String deletingQuery = "delete from schedules where " + columnName + " = :id";
 
         initializeSession();
         Query<TeamPlayer> queryForCustomDeletion = session.createNativeQuery(deletingQuery)
-                .setParameter("column", columnName)
                 .setParameter("id", externalId);
         queryForCustomDeletion.executeUpdate();
 

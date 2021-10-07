@@ -11,7 +11,7 @@ public class Tournament extends AppEntity {
     @Id
     @Column(name = "tournament_id")
     private int tournamentId;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "tournament_name")

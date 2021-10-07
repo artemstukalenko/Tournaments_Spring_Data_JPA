@@ -16,4 +16,6 @@ public interface TeamDAO {
     boolean deleteTeamById(int teamId);
 
     boolean deleteTeamByUserId(int userId);
+
+    List<Team> findTeamsByUserId(int userId);
 }

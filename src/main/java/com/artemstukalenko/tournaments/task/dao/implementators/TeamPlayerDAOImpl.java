@@ -61,11 +61,10 @@ public class TeamPlayerDAOImpl extends EntityDAO implements TeamPlayerDAO {
     @Transactional
     public boolean deleteTeamPlayerByExternalId(int externalId, String columnName) {
 
-        String deletingQuery = "delete from team_players where :column = :id";
+        String deletingQuery = "delete from team_players where " + columnName + " = :id";
 
         initializeSession();
         Query<TeamPlayer> queryForCustomDeletion = session.createNativeQuery(deletingQuery)
-                .setParameter("column", columnName)
                 .setParameter("id", externalId);
         queryForCustomDeletion.executeUpdate();
 

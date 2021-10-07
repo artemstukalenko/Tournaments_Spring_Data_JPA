@@ -63,11 +63,12 @@ public class UserDAOImpl extends EntityDAO implements UserDAO {
         List<User> soughtUsers;
 
         initializeSession();
-        String selectionQuery = "select * from users where role_id = :id";
-        Query<User> queryForFindingUserById = session.createNativeQuery(selectionQuery)
+        String selectionQuery = "from User where userRole.id = :id";
+        Query<User> queryForFindingUserByRoleId = session.createQuery(selectionQuery)
                 .setParameter("id", userRoleId);
 
-        soughtUsers = queryForFindingUserById.getResultList();
+        soughtUsers = queryForFindingUserByRoleId.getResultList();
+
         return soughtUsers;
     }
 }

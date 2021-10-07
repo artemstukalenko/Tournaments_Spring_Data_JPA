@@ -61,9 +61,10 @@ public class TournamentDAOImpl extends EntityDAO implements TournamentDAO {
     @Transactional
     public boolean deleteTournamentByUserId(int userId) {
 
-        String deletingQuery = "delete from tournaments where user_id = :id";
+        initializeSession();
+        String deletingQuery = "delete from Tournament where user.id = :id";
         Query<Tournament> queryForDeletingTournamentByUserId = session
-                .createNativeQuery(deletingQuery).setParameter("id", userId);
+                .createQuery(deletingQuery).setParameter("id", userId);
         queryForDeletingTournamentByUserId.executeUpdate();
 
         return true;
