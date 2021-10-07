@@ -28,6 +28,17 @@
         <td th:text="${user.username}"></td>
         <td th:text="${user.password}"></td>
         <td th:text="${user.isAdmin}"></td>
+
+        <td>
+            <form th:action="@{/users/deleteUser/{id}(id=${user.userId})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/users/updateUser/{id}(id=${user.userId})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+        </td>
     </tr>
 </table>
 
@@ -36,7 +47,11 @@
 <br/>
 
 <form th:action="@{/users/addUser}" method="get">
-    <input type="submit" value="Add new user"/>
+    <input type="submit" value="Add new user"/> <br/><br/>
+</form>
+
+<form th:action="@{/}" method="get">
+    <input type="submit" value="To homepage"> <br/><br/>
 </form>
 
 </body>

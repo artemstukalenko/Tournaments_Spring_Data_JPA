@@ -58,6 +58,7 @@ public class UserController {
     public String getFormToUpdateUser(@PathVariable("id") int idToUpdate, Model model) {
 
         model.addAttribute("user", userService.findUserById(idToUpdate));
+        model.addAttribute("availableRoles", userRoleService.getAllUserRoles());
 
         return "user-form.html";
     }
