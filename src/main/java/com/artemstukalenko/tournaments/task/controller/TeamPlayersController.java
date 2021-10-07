@@ -43,6 +43,12 @@ public class TeamPlayersController {
 
     @RequestMapping("/commitTeamPlayer")
     public String commitTeamPlayer(TeamPlayer teamPlayer) {
+
+        teamPlayer.setTeam(teamService.findTeamById(teamPlayer.getTeam().getTeamId()));
+        teamPlayer.setPlayer(playerService.findPlayerById(teamPlayer.getPlayer().getId()));
+
+        teamPlayerService.addOrUpdateTeamPlayer(teamPlayer);
+
         return "forward:/teamplayers/";
     }
 

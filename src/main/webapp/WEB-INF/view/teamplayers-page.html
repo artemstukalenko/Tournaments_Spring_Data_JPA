@@ -65,8 +65,31 @@
         <td th:text="${teamplayer.player.user.username}"></td>
         <td th:text="${teamplayer.player.user.password}"></td>
         <td th:text="${teamplayer.player.user.isAdmin}"></td>
+
+        <td>
+            <form th:action="@{/teamplayers/deleteTeamPlayer/{id}(id=${teamplayer.teamPlayerId})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/teamplayers/updateTeamPlayer/{id}(id=${teamplayer.teamPlayerId})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+        </td>
     </tr>
 </table>
+
+<br/>
+<hr/>
+<br/>
+
+<form th:action="@{/teamplayers/addTeamPlayer}" method="get">
+    <input type="submit" value="Add new teamplayer"/> <br/><br/>
+</form>
+
+<form th:action="@{/}" method="get">
+    <input type="submit" value="To homepage"> <br/><br/>
+</form>
 
 </body>
 

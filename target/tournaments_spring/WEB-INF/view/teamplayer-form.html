@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TeamPlayers</title>
+</head>
+
+<body>
+
+<h3>TeamPlayer form</h3>
+<hr/>
+
+<form th:action="@{/teamplayers/commitTeamPlayer/}" th:object="${teamPlayer}" method="post">
+    Select team for this teamplayer:
+    <select th:field="*{team.teamId}" th:required="true">
+        <option th:each="team : ${allTeams}" th:value="${team.teamId}" th:text="${team.teamName}">
+
+        </option>
+    </select>
+    <br/><br/>
+    Select player for this teamplayer:
+    <select th:field="*{player.id}" th:required="true">
+        <option th:each="player : ${allPlayers}" th:value="${player.id}" th:text="${player.playerName}">
+
+        </option>
+    </select>
+    <br/><br/>
+
+    <input type="text" th:value="${teamPlayer.teamPlayerId}" th:hidden="true" th:field="*{teamPlayerId}"/>
+    <button type="submit" name="submit" value="submit">Submit</button>
+</form>
+
+<hr/>
+
+<form th:action="@{/teamplayers/}" method="get">
+    <input type="submit" value="Cancel"> <br/><br/>
+</form>
+
+</body>
+
+</html>
