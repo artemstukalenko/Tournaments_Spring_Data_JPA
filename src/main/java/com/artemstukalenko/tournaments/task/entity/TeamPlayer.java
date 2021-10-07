@@ -10,7 +10,7 @@ public class TeamPlayer extends AppEntity {
     @Id
     @Column(name = "tp_id")
     private int teamPlayerId;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
     @OneToOne(cascade = CascadeType.ALL)
