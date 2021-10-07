@@ -73,9 +73,33 @@
                 <td th:text="${schedule.team.user.username}"></td>
                 <td th:text="${schedule.team.user.password}"></td>
                 <td th:text="${schedule.team.user.isAdmin}"></td>
+
+        <td>
+            <form th:action="@{/schedules/deleteSchedule/{id}(id=${schedule.scheduleId})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/schedules/updateSchedule/{id}(id=${schedule.scheduleId})}" method="post">
+                <input type="submit" value="Update">
+            </form>
+        </td>
     </tr>
     </tr>
 </table>
+
+<br/>
+<hr/>
+<br/>
+
+<form th:action="@{/schedules/addSchedule}" method="get">
+    <input type="submit" value="Add new schedule"/> <br/><br/>
+</form>
+
+<form th:action="@{/}" method="get">
+    <input type="submit" value="To homepage"> <br/><br/>
+</form>
+
 
 </body>
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Schedules</title>
+</head>
+
+<body>
+
+<h3>Schedules form</h3>
+<hr/>
+
+<form th:action="@{/schedules/commitSchedule/}" th:object="${schedule}" method="post">
+    Select team for this schedule:
+    <select th:field="*{team.teamId}" th:required="true">
+        <option th:each="team : ${allTeams}" th:value="${team.teamId}" th:text="${team.teamName}">
+
+        </option>
+    </select>
+    <br/><br/>
+    Select tournament for this schedules:
+    <select th:field="*{tournament.tournamentId}" th:required="true">
+        <option th:each="tournament : ${allTournaments}" th:value="${tournament.tournamentId}" th:text="${tournament.tournamentName}">
+
+        </option>
+    </select>
+    <br/><br/>
+
+    <input type="text" th:value="${schedule.scheduleId}" th:hidden="true" th:field="*{scheduleId}"/>
+    <button type="submit" name="submit" value="submit">Submit</button>
+</form>
+
+<hr/>
+
+<form th:action="@{/schedules/}" method="get">
+    <input type="submit" value="Cancel"> <br/><br/>
+</form>
+
+</body>
+
+</html>
