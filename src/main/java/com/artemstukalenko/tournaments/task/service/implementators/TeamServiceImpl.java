@@ -1,8 +1,8 @@
 package com.artemstukalenko.tournaments.task.service.implementators;
 
-import com.artemstukalenko.tournaments.task.dao.ScheduleDAO;
-import com.artemstukalenko.tournaments.task.dao.TeamDAO;
-import com.artemstukalenko.tournaments.task.dao.TeamPlayerDAO;
+import com.artemstukalenko.tournaments.task.repositories.ScheduleRepository;
+import com.artemstukalenko.tournaments.task.repositories.TeamRepository;
+import com.artemstukalenko.tournaments.task.repositories.TeamPlayerRepository;
 import com.artemstukalenko.tournaments.task.entity.Team;
 import com.artemstukalenko.tournaments.task.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,41 +15,47 @@ import java.util.List;
 public class TeamServiceImpl implements TeamService {
 
     @Autowired
-    private TeamDAO teamDAO;
+    private TeamRepository teamRepository;
 
     @Autowired
-    private TeamPlayerDAO teamPlayerDAO;
+    private TeamPlayerRepository teamPlayerRepository;
 
     @Autowired
-    private ScheduleDAO scheduleDAO;
+    private ScheduleRepository scheduleRepository;
 
     @Override
     public List<Team> getAllTeams() {
-        return teamDAO.getAllTeams();
+        return teamRepository.findAll();
     }
 
     @Override
     public Team findTeamById(int teamId) {
-        return teamDAO.findTeamById(teamId);
+        return teamRepository.getById(teamId);
     }
 
     @Override
+    @Transactional
     public boolean addOrUpdateTeam(Team teamToAdd) {
-        return teamDAO.addOrUpdateTeam(teamToAdd);
+        teamRepository.save(teamToAdd);
+        return true;
     }
 
     @Override
     @Transactional
     public boolean deleteTeamById(int teamId) {
-        scheduleDAO.deleteScheduleByExternalId(teamId, "team_id");
-        teamPlayerDAO.deleteTeamPlayerByExternalId(teamId, "team_id");
-        return teamDAO.deleteTeamById(teamId);
+        System.out.println("PASSING ID TO DELETE SCHEDULE:    " + teamId);
+        scheduleRepository.deleteScheduleByTeamId(teamId);
+        System.out.println("DELETE SCHEDULE!!!");
+        teamPlayerRepository.deleteTeamPlayerByTeamId(teamId);
+        teamRepository.deleteById(teamId);
+        return true;
     }
 
     @Override
+    @Transactional
     public boolean deleteTeamByUserId(int userId) {
 
-        for(Team team : teamDAO.findTeamsByUserId(userId)) {
+        for(Team team : teamRepository.findTeamsByUserId(userId)) {
             deleteTeamById(team.getTeamId());
         }
 

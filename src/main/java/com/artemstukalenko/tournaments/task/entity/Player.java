@@ -13,7 +13,7 @@ public class Player extends AppEntity {
     private int id;
     @Column(name = "player_name")
     private String playerName;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

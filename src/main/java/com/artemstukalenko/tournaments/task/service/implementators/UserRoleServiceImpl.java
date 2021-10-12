@@ -1,7 +1,6 @@
 package com.artemstukalenko.tournaments.task.service.implementators;
 
-import com.artemstukalenko.tournaments.task.dao.UserDAO;
-import com.artemstukalenko.tournaments.task.dao.UserRoleDAO;
+import com.artemstukalenko.tournaments.task.repositories.UserRoleRepository;
 import com.artemstukalenko.tournaments.task.entity.User;
 import com.artemstukalenko.tournaments.task.entity.UserRole;
 import com.artemstukalenko.tournaments.task.service.UserRoleService;
@@ -16,24 +15,26 @@ import java.util.List;
 public class UserRoleServiceImpl implements UserRoleService {
 
     @Autowired
-    private UserRoleDAO userRoleDAO;
+    private UserRoleRepository userRoleRepository;
 
     @Autowired
     private UserService userService;
 
     @Override
     public List<UserRole> getAllUserRoles() {
-        return userRoleDAO.getAllUserRoles();
+        return userRoleRepository.findAll();
     }
 
     @Override
     public UserRole findRoleById(int roleId) {
-        return userRoleDAO.findRoleById(roleId);
+        return userRoleRepository.getById(roleId);
     }
 
     @Override
+    @Transactional
     public boolean addOrUpdateRole(UserRole roleToAdd) {
-        return userRoleDAO.addOrUpdateRole(roleToAdd);
+        userRoleRepository.save(roleToAdd);
+        return true;
     }
 
     @Override
@@ -46,7 +47,8 @@ public class UserRoleServiceImpl implements UserRoleService {
             userService.deleteUserById(user.getUserId());
         }
 
-        return userRoleDAO.deleteRoleById(roleId);
+        userRoleRepository.deleteById(roleId);
+        return true;
     }
 
 }

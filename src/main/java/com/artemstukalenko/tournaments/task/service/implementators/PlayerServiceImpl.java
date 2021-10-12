@@ -1,7 +1,7 @@
 package com.artemstukalenko.tournaments.task.service.implementators;
 
-import com.artemstukalenko.tournaments.task.dao.PlayerDAO;
-import com.artemstukalenko.tournaments.task.dao.TeamPlayerDAO;
+import com.artemstukalenko.tournaments.task.repositories.PlayerRepository;
+import com.artemstukalenko.tournaments.task.repositories.TeamPlayerRepository;
 import com.artemstukalenko.tournaments.task.entity.Player;
 import com.artemstukalenko.tournaments.task.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,37 +14,41 @@ import java.util.List;
 public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
-    private PlayerDAO playerDAO;
+    private PlayerRepository playerRepository;
 
     @Autowired
-    private TeamPlayerDAO teamPlayerDAO;
+    private TeamPlayerRepository teamPlayerRepository;
 
     @Override
     public List<Player> getAllPlayers() {
-        return playerDAO.getAllPlayers();
+        return playerRepository.findAll();
     }
 
     @Override
     public Player findPlayerById(int playerId) {
-        return playerDAO.findPlayerById(playerId);
+        return playerRepository.getById(playerId);
     }
 
     @Override
+    @Transactional
     public boolean addOrUpdatePlayer(Player playerToAdd) {
-        return playerDAO.addOrUpdatePlayer(playerToAdd);
+        playerRepository.save(playerToAdd);
+        return true;
     }
 
     @Override
     @Transactional
     public boolean deletePlayerById(int playerToDeleteId) {
-        teamPlayerDAO.deleteTeamPlayerByExternalId(playerToDeleteId, "player_id");
-        return playerDAO.deletePlayerById(playerToDeleteId);
+        teamPlayerRepository.deleteTeamPlayerByPlayerId(playerToDeleteId);
+        playerRepository.deleteById(playerToDeleteId);
+        return true;
     }
 
     @Override
+    @Transactional
     public boolean deletePlayerByUserId(int userId) {
 
-        for (Player player : playerDAO.findPlayersByUserId(userId)) {
+        for (Player player : playerRepository.findPlayersByUserId(userId)) {
             deletePlayerById(player.getId());
         }
 

@@ -1,9 +1,6 @@
 package com.artemstukalenko.tournaments.task.service.implementators;
 
-import com.artemstukalenko.tournaments.task.dao.PlayerDAO;
-import com.artemstukalenko.tournaments.task.dao.TeamDAO;
-import com.artemstukalenko.tournaments.task.dao.TournamentDAO;
-import com.artemstukalenko.tournaments.task.dao.UserDAO;
+import com.artemstukalenko.tournaments.task.repositories.UserRepository;
 import com.artemstukalenko.tournaments.task.entity.User;
 import com.artemstukalenko.tournaments.task.service.PlayerService;
 import com.artemstukalenko.tournaments.task.service.TeamService;
@@ -19,7 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Autowired
     private TournamentService tournamentService;
@@ -32,12 +29,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        return userDAO.getAllUsers();
+        return userRepository.findAll();
     }
 
     @Override
+    @Transactional
     public boolean addOrUpdateUser(User userToAdd) {
-        return userDAO.addOrUpdateUser(userToAdd);
+        userRepository.save(userToAdd);
+        return true;
     }
 
     @Override
@@ -47,16 +46,17 @@ public class UserServiceImpl implements UserService {
         playerService.deletePlayerByUserId(userId);
         tournamentService.deleteTournamentByUserId(userId);
 
-        return userDAO.deleteUserById(userId);
+        userRepository.deleteById(userId);
+        return true;
     }
 
     @Override
     public User findUserById(int userId) {
-        return userDAO.findUserById(userId);
+        return userRepository.getById(userId);
     }
 
     @Override
     public List<User> findUsersByUserRoleId(int userRoleId) {
-        return userDAO.findUsersByUserRoleId(userRoleId);
+        return userRepository.findUsersByUserRoleId(userRoleId);
     }
 }

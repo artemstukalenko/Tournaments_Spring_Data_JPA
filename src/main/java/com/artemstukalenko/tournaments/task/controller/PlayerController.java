@@ -57,7 +57,7 @@ public class PlayerController {
     @RequestMapping("/updatePlayer/{id}")
     public String getFormToUpdatePlayer(@PathVariable("id") int idToUpdate,
                                         Model model) {
-
+        System.out.println("PLAYER TO UPDATE:    " + playerService.findPlayerById(idToUpdate));
         model.addAttribute("player", playerService.findPlayerById(idToUpdate));
         model.addAttribute("allUsers", userService.getAllUsers());
 

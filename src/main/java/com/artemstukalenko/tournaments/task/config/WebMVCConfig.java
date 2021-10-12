@@ -13,6 +13,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -33,6 +35,9 @@ import java.util.Properties;
 
 @EnableWebMvc
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.artemstukalenko.tournaments.task.repositories",
+                       entityManagerFactoryRef = "sessionFactory",
+                       transactionManagerRef = "transactionManager")
 @Configuration
 @ComponentScan("com.artemstukalenko.tournaments.task")
 public class WebMVCConfig implements WebMvcConfigurer, ApplicationContextAware {
