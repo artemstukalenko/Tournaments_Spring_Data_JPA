@@ -6,11 +6,14 @@ import com.artemstukalenko.tournaments.task.entity.Tournament;
 import com.artemstukalenko.tournaments.task.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class TournamentServiceImpl implements TournamentService {
 
     @Autowired
@@ -20,24 +23,25 @@ public class TournamentServiceImpl implements TournamentService {
     private ScheduleRepository scheduleRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Tournament> getAllTournaments() {
         return tournamentRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Tournament findTournamentById(int tournamentId) {
-        return tournamentRepository.getById(tournamentId);
+        Optional<Tournament> foundTournament = tournamentRepository.findById(tournamentId);
+        return Optional.ofNullable(foundTournament).get().orElse(new Tournament());
     }
 
     @Override
-    @Transactional
     public boolean addOrUpdateTournament(Tournament tournamentToAdd) {
         tournamentRepository.save(tournamentToAdd);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deleteTournamentById(int tournamentId) {
         scheduleRepository.deleteScheduleByTournamentId(tournamentId);
         tournamentRepository.deleteById(tournamentId);
@@ -45,7 +49,6 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
-    @Transactional
     public boolean deleteTournamentByUserId(int userId) {
         tournamentRepository.deleteTournamentByUserId(userId);
         return true;

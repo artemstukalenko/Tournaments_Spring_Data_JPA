@@ -5,35 +5,39 @@ import com.artemstukalenko.tournaments.task.entity.TeamPlayer;
 import com.artemstukalenko.tournaments.task.service.TeamPlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class TeamPlayerServiceImpl implements TeamPlayerService {
 
     @Autowired
     private TeamPlayerRepository teamPlayerRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<TeamPlayer> getAllTeamPlayers() {
         return teamPlayerRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public TeamPlayer findTeamPlayerById(int teamPlayerId) {
-        return teamPlayerRepository.getById(teamPlayerId);
+        Optional<TeamPlayer> foundTeamPlayer = teamPlayerRepository.findById(teamPlayerId);
+        return Optional.ofNullable(foundTeamPlayer).get().orElse(new TeamPlayer());
     }
 
     @Override
-    @Transactional
     public boolean addOrUpdateTeamPlayer(TeamPlayer teamPlayerToAdd) {
         teamPlayerRepository.save(teamPlayerToAdd);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deleteTeamPlayerById(int teamPlayerId) {
         teamPlayerRepository.deleteById(teamPlayerId);
         return true;

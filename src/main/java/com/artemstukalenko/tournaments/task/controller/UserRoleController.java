@@ -48,7 +48,10 @@ public class UserRoleController {
     @RequestMapping("/updateRole/{id}")
     public String getUpdateRoleForm(@PathVariable("id") int idToUpdate, Model model) {
 
-        model.addAttribute("userRole", userRoleService.findRoleById(idToUpdate));
+        UserRole roleToUpdate = userRoleService.findRoleById(idToUpdate);
+
+        model.addAttribute("userRole", roleToUpdate);
+//        System.out.println("ROLE:      " + model.getAttribute("userRole"));
 
         return "add-new-role-form.html";
     }

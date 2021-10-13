@@ -7,11 +7,15 @@ import com.artemstukalenko.tournaments.task.service.UserRoleService;
 import com.artemstukalenko.tournaments.task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+//import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class UserRoleServiceImpl implements UserRoleService {
 
     @Autowired
@@ -21,24 +25,25 @@ public class UserRoleServiceImpl implements UserRoleService {
     private UserService userService;
 
     @Override
+    @Transactional(readOnly = true)
     public List<UserRole> getAllUserRoles() {
         return userRoleRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserRole findRoleById(int roleId) {
-        return userRoleRepository.getById(roleId);
+        Optional<UserRole> foundRole = userRoleRepository.findById(roleId);
+        return Optional.ofNullable(foundRole).get().orElse(new UserRole());
     }
 
     @Override
-    @Transactional
     public boolean addOrUpdateRole(UserRole roleToAdd) {
         userRoleRepository.save(roleToAdd);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deleteRoleById(int roleId) {
 
         List<User> usersWithThatRole = userService.findUsersByUserRoleId(roleId);

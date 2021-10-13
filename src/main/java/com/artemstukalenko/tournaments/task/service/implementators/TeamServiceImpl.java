@@ -7,11 +7,14 @@ import com.artemstukalenko.tournaments.task.entity.Team;
 import com.artemstukalenko.tournaments.task.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class TeamServiceImpl implements TeamService {
 
     @Autowired
@@ -24,35 +27,33 @@ public class TeamServiceImpl implements TeamService {
     private ScheduleRepository scheduleRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Team> getAllTeams() {
         return teamRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Team findTeamById(int teamId) {
-        return teamRepository.getById(teamId);
+        Optional<Team> foundTeam = teamRepository.findById(teamId);
+        return Optional.ofNullable(foundTeam).get().orElse(new Team());
     }
 
     @Override
-    @Transactional
     public boolean addOrUpdateTeam(Team teamToAdd) {
         teamRepository.save(teamToAdd);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deleteTeamById(int teamId) {
-        System.out.println("PASSING ID TO DELETE SCHEDULE:    " + teamId);
         scheduleRepository.deleteScheduleByTeamId(teamId);
-        System.out.println("DELETE SCHEDULE!!!");
         teamPlayerRepository.deleteTeamPlayerByTeamId(teamId);
         teamRepository.deleteById(teamId);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deleteTeamByUserId(int userId) {
 
         for(Team team : teamRepository.findTeamsByUserId(userId)) {

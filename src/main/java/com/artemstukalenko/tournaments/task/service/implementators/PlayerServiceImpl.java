@@ -6,9 +6,10 @@ import com.artemstukalenko.tournaments.task.entity.Player;
 import com.artemstukalenko.tournaments.task.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,24 +22,25 @@ public class PlayerServiceImpl implements PlayerService {
     private TeamPlayerRepository teamPlayerRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Player findPlayerById(int playerId) {
-        return playerRepository.getById(playerId);
+        Optional<Player> foundPlayer = playerRepository.findById(playerId);
+        return Optional.ofNullable(foundPlayer).get().orElse(new Player());
     }
 
     @Override
-    @Transactional
     public boolean addOrUpdatePlayer(Player playerToAdd) {
         playerRepository.save(playerToAdd);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deletePlayerById(int playerToDeleteId) {
         teamPlayerRepository.deleteTeamPlayerByPlayerId(playerToDeleteId);
         playerRepository.deleteById(playerToDeleteId);
@@ -46,7 +48,6 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    @Transactional
     public boolean deletePlayerByUserId(int userId) {
 
         for (Player player : playerRepository.findPlayersByUserId(userId)) {

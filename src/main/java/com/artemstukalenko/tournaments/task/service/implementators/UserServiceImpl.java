@@ -8,11 +8,14 @@ import com.artemstukalenko.tournaments.task.service.TournamentService;
 import com.artemstukalenko.tournaments.task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -28,19 +31,18 @@ public class UserServiceImpl implements UserService {
     private PlayerService playerService;
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    @Transactional
     public boolean addOrUpdateUser(User userToAdd) {
         userRepository.save(userToAdd);
         return true;
     }
 
     @Override
-    @Transactional
     public boolean deleteUserById(int userId) {
         teamService.deleteTeamByUserId(userId);
         playerService.deletePlayerByUserId(userId);
@@ -51,11 +53,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User findUserById(int userId) {
-        return userRepository.getById(userId);
+        Optional<User> foundUser = userRepository.findById(userId);
+        return Optional.ofNullable(foundUser).get().orElse(new User());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<User> findUsersByUserRoleId(int userRoleId) {
         return userRepository.findUsersByUserRoleId(userRoleId);
     }
