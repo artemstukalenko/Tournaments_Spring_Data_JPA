@@ -1,25 +1,20 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Users</title>
-<style>
-    th:nth-child(n + 2) {
-        background: cadetblue;
-    }
-    th:nth-child(n + 14) {
-        background: darkgreen;
-    }
-</style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
 </head>
-
 <body>
 
-<h3>Users</h3>
+<h3>Schedules</h3>
 <br/>
-<table border="1">
+<table border="1" class="table table-striped">
     <tr>
         <th>ID</th>
 
@@ -45,43 +40,45 @@
         <th>USER USERNAME</th>
         <th>USER PASSWORD</th>
         <th>USER IS ADMIN</th>
+        <th></th>
+        <th></th>
     </tr>
     <tr th:each="schedule: ${allSchedules}">
         <td th:text="${schedule.scheduleId}"></td>
 
-            <td th:text="${schedule.tournament.tournamentId}"></td>
+        <td th:text="${schedule.tournament.tournamentId}"></td>
 
-                <td th:text="${schedule.tournament.user.userId}"></td>
-                <td th:text="${schedule.tournament.user.userRole.roleId}"></td>
-                <td th:text="${schedule.tournament.user.userRole.roleName}"></td>
-                <td th:text="${schedule.tournament.user.name}"></td>
-                <td th:text="${schedule.tournament.user.username}"></td>
-                <td th:text="${schedule.tournament.user.password}"></td>
-                <td th:text="${schedule.tournament.user.isAdmin}"></td>
+        <td th:text="${schedule.tournament.user.userId}"></td>
+        <td th:text="${schedule.tournament.user.userRole.roleId}"></td>
+        <td th:text="${schedule.tournament.user.userRole.roleName}"></td>
+        <td th:text="${schedule.tournament.user.name}"></td>
+        <td th:text="${schedule.tournament.user.username}"></td>
+        <td th:text="${schedule.tournament.user.password}"></td>
+        <td th:text="${schedule.tournament.user.isAdmin}"></td>
 
-            <td th:text="${schedule.tournament.tournamentName}"></td>
-            <td th:text="${schedule.tournament.venue}"></td>
-            <td th:text="${schedule.tournament.startDate}"></td>
-            <td th:text="${schedule.tournament.endDate}"></td>
+        <td th:text="${schedule.tournament.tournamentName}"></td>
+        <td th:text="${schedule.tournament.venue}"></td>
+        <td th:text="${schedule.tournament.startDate}"></td>
+        <td th:text="${schedule.tournament.endDate}"></td>
 
-            <td th:text="${schedule.team.teamId}"></td>
-            <td th:text="${schedule.team.teamName}"></td>
-                <td th:text="${schedule.team.user.userId}"></td>
-                <td th:text="${schedule.team.user.userRole.roleId}"></td>
-                <td th:text="${schedule.team.user.userRole.roleName}"></td>
-                <td th:text="${schedule.team.user.name}"></td>
-                <td th:text="${schedule.team.user.username}"></td>
-                <td th:text="${schedule.team.user.password}"></td>
-                <td th:text="${schedule.team.user.isAdmin}"></td>
+        <td th:text="${schedule.team.teamId}"></td>
+        <td th:text="${schedule.team.teamName}"></td>
+        <td th:text="${schedule.team.user.userId}"></td>
+        <td th:text="${schedule.team.user.userRole.roleId}"></td>
+        <td th:text="${schedule.team.user.userRole.roleName}"></td>
+        <td th:text="${schedule.team.user.name}"></td>
+        <td th:text="${schedule.team.user.username}"></td>
+        <td th:text="${schedule.team.user.password}"></td>
+        <td th:text="${schedule.team.user.isAdmin}"></td>
 
         <td>
             <form th:action="@{/schedules/deleteSchedule/{id}(id=${schedule.scheduleId})}">
-                <input type="submit" value="Delete">
+                <input class="btn btn-primary" type="submit" value="Delete">
             </form>
         </td>
         <td>
             <form th:action="@{/schedules/updateSchedule/{id}(id=${schedule.scheduleId})}" method="post">
-                <input type="submit" value="Update">
+                <input class="btn btn-primary" type="submit" value="Update">
             </form>
         </td>
     </tr>
@@ -89,18 +86,27 @@
 </table>
 
 <br/>
-<hr/>
 <br/>
 
-<form th:action="@{/schedules/addSchedule}" method="get">
-    <input type="submit" value="Add new schedule"/> <br/><br/>
-</form>
+<div class="container" align="center">
+    <form th:action="@{/schedules/addSchedule}" method="get">
+        <input class="btn btn-outline-dark" type="submit" value="Add new schedule"/> <br/><br/>
+    </form>
 
-<form th:action="@{/}" method="get">
-    <input type="submit" value="To homepage"> <br/><br/>
-</form>
+    <form th:action="@{/}" method="get">
+        <input class="btn btn-outline-dark" type="submit" value="To homepage"> <br/><br/>
+    </form>
+</div>
 
+<!-- Optional JavaScript; choose one of the two! -->
 
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
 </body>
-
 </html>

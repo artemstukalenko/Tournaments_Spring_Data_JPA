@@ -50,7 +50,9 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     public boolean deleteTournamentByUserId(int userId) {
-        tournamentRepository.deleteTournamentByUserId(userId);
+        for (Tournament tournament : tournamentRepository.findTournamentsByUserId(userId)) {
+            deleteTournamentById(tournament.getTournamentId());
+        }
         return true;
     }
 }
